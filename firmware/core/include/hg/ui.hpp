@@ -365,7 +365,7 @@ class Ui {
   // The screen that owns the whole panel right now, and the hash of what it drew.
   // Leaving it repaints everything (draw_frame); each face repaints when the flag
   // is not itself, so Clock -> Alarm -> Clock in one minute still redraws.
-  enum class FullFace : uint8_t { None, Alarm, Clock, Battery };
+  enum class FullFace : uint8_t { None, Alarm, Clock, Battery, ProjectDot };
   FullFace full_face_ = FullFace::None;
   uint32_t face_hash_ = 0;
 };

@@ -156,6 +156,7 @@ struct AmoledConfig {
   int qspi_mhz = 40;
   bool round = false;
   uint8_t corner_inset = 0;  // extra top-bar padding for rounded corners (hg::DisplayInfo)
+  bool project_dot = false;  // Project Dot's monochrome everyday face
   AmoledPanel panel = AmoledPanel::Co5300_466;
 };
 

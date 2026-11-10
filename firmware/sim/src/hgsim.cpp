@@ -38,6 +38,7 @@ class SimHal final : public hg::Display,
     info_.swap_bytes = false;
     info_.has_backlight = cfg.has_backlight != 0;
     info_.round = cfg.round != 0;
+    if (cfg.board && std::strcmp(cfg.board, "sim-480x480") == 0) info_.theme = hg::UiTheme::ProjectDot;
   }
 
   // Display

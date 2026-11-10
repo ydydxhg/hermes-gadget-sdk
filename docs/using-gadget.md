@@ -17,6 +17,18 @@ Wait for the device to show Ready. On the LCD board, BOOT is TALK and PLUS is CA
 
 While Hermes speaks a reply, the face talks with the reply's latest two lines under it, and the whole text follows when the speech ends. Screens too small for the face and two lines, such as 240x135 and 128x128, show the text from the start.
 
+On the Waveshare AMOLED-2.16, the everyday online screen is Project Dot: a
+large white face on pure black. Ready, listening, thinking, and speaking
+use distinct expressions. Ready briefly blinks about once every seven seconds;
+its mouth and position stay still, and the other expressions remain static.
+Turn the blink off with the **Animation** setting. A running timer, a lost
+connection, reply text, cards, prompts, setup, pairing, settings,
+profiles, updates, battery notices, alarms, the camera, and the resting clock
+keep their normal information screens. Errors use the confused face while
+retaining their diagnostic text. Swipe left still opens profiles. Hold the
+normally invisible top title strip for one second to open settings, or enter
+`settings` on the console.
+
 Long replies turn their own pages. Simulated boards with scroll buttons also accept Up and Down.
 
 On boards with PSRAM, a recording survives the connection to Hermes dropping. The screen says "Offline, still recording" and you can finish speaking as usual. The gadget sends the whole recording once it is back online and Hermes answers as usual. If the connection doesn't come back within 45 seconds of the end of the recording, the gadget says "Couldn't send the recording". CANCEL discards it meanwhile ([the recording buffer](architecture.md#the-recording-buffer)).

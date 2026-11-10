@@ -304,6 +304,7 @@ hg::DisplayInfo AmoledDisplay::info() const {
   di.round = cfg_.round;
   di.corner_inset = cfg_.corner_inset;
   di.emissive = true;
+  di.theme = cfg_.project_dot ? hg::UiTheme::ProjectDot : hg::UiTheme::Standard;
   return di;
 }
 

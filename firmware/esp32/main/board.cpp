@@ -401,6 +401,7 @@ BoardConfig make() {
   b.amoled.rst = 39;
   b.amoled.gap_x = 0;       // the controller RAM is exactly 480 wide
   b.amoled.gap_y = 0;
+  b.amoled.project_dot = true;
   b.amoled.panel = AmoledPanel::Co5300_480;
   b.i2c = {15, 14, 400000};
   b.codec.enabled = true;

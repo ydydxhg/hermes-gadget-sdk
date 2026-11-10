@@ -99,7 +99,7 @@ Like a board, the simulated device takes firmware updates (`hermes gadget update
 | `sim-466x466-round` | 466×466 round | The 1.75" AMOLED touch board: hold the mouse on the screen to talk, click to answer yes, drag down to cancel. It has a simulated motion sensor for face-down sleep. No scroll buttons, so long replies page by themselves |
 | `sim-368x448` | 368×448 | The 1.8" rectangular AMOLED touch board: hold the mouse on the screen to talk, click to answer yes, drag down to cancel. No scroll buttons |
 | `sim-410x486` | 410×486 | The 2.06" AMOLED watch's display window: hold the mouse to talk, click to answer yes, drag down to cancel. No scroll buttons. Does not model the glass's rounded corners or microphone gain |
-| `sim-480x480` | 480×480 | The 2.16" square AMOLED touch board: hold the mouse to talk, click to answer yes, drag down to cancel. No scroll buttons |
+| `sim-480x480` | 480×480 | The 2.16" square AMOLED touch board with the Project Dot monochrome everyday face: hold the mouse to talk, click to answer yes, drag down to cancel, or hold the invisible top title strip for settings. No scroll buttons |
 | `sim-480x480-round-nospeaker` | 480×480 round | A round touch board with no microphone or speaker, like the CrowPanel 2.1. Timers show their countdown and alarm, silently. No scroll buttons |
 
 Add a profile to `BOARDS` in `python/hermes_gadget/sim/runner.py` to mirror new hardware.

@@ -743,6 +743,17 @@ No AXP2101 output is switched for audio, as in Waveshare's BSP, which does not c
 
 **Controls.** Hold the screen or BOOT to talk, tap to answer "yes", swipe down to cancel. A short press on PWR turns the screen off and on. KEY3 (GPIO18) is not wired as a gadget control in this profile.
 
+**Project Dot UI.** While the device is online and otherwise idle, the panel
+uses a large monochrome face for Ready, listening, thinking and speaking. Ready
+briefly blinks about once every seven seconds when **Animation** is on; the
+other expressions stay static. The title strip is hidden on those four screens
+but its one-second settings hold
+target remains at the top of the panel. Swipe left still opens the profile grid.
+All setup, connection, text, timer, prompt, settings, profile, update, power,
+alarm, camera and clock screens retain the standard information UI. A profile
+face remains visible in the profile grid but does not replace Project Dot on the
+everyday screen.
+
 **Build and flash it** with PlatformIO:
 
 ```bash
@@ -755,9 +766,9 @@ The USB-C port is the S3's own USB Serial/JTAG, used for both flashing and the s
 ### First flash: what to check
 
 1. **Boot log:** `CO5300 480x480 ready`, `codecs: speaker ready, microphones ready`, plus `touch ready, key off, encoder off`. In the `diag` report, `i2c` should include `0x18` (ES8311), `0x34` (AXP2101), `0x40` (ES7210), `0x51` (PCF85063), `0x5a` (CST9220) and `0x6b` (QMI8658). When the PCF85063 answers, the parts line adds `rtc pcf85063`, and `diag` reports a `time` object once the time is known.
-2. **Screen:** the mascot is upright and not mirrored; text is white on dark slate bars, and the link dot is green once online. A stripe at one edge means the column offset is off.
-3. **Touch:** holding the screen shows the listening waves, and a swipe *down* cancels. Report mirrored or offset coordinates with the board revision.
-4. **Microphones:** say something. The waves move with your voice and the transcript is right; in tap mode, a sentence spoken at arm's length starts and ends the recording.
+2. **Screen:** the Project Dot face is upright and not mirrored once online; setup and connection screens retain their text and status bars. A stripe at one edge means the column offset is off.
+3. **Touch:** holding the screen shows the listening expression, and a swipe *down* cancels. Hold the invisible top title strip for one second to open settings. Report mirrored or offset coordinates with the board revision.
+4. **Microphones:** say something. The listening expression appears and the transcript is right; in tap mode, a sentence spoken at arm's length starts and ends the recording.
 5. **Speaker:** replies are clear and loud enough (`set volume 80`), with no hiss between replies.
 
 The CO5300 start-up table and the pin map come from Waveshare's [board support package](https://github.com/waveshareteam/Waveshare-ESP32-components/tree/63ac675334db62509082e182ff900bf60f21f009/bsp/esp32_s3_touch_amoled_2_16) 2.0.1 at commit `63ac675`, checked against the [product documentation](https://docs.waveshare.com/ESP32-S3-Touch-AMOLED-2.16); see [THIRD_PARTY_NOTICES](../THIRD_PARTY_NOTICES.md).

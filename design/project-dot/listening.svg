@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" role="img" aria-labelledby="title">
+  <title id="title">Project Dot listening face</title>
+  <rect width="480" height="480" fill="#FFFFFF"/>
+  <circle cx="240" cy="240" r="232" fill="#000000"/>
+  <ellipse cx="150" cy="202" rx="26" ry="46" fill="#FFFFFF"/>
+  <ellipse cx="330" cy="202" rx="26" ry="46" fill="#FFFFFF"/>
+  <path d="M216 280 Q240 295 264 280" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="240" cy="335" r="10" fill="#FFFFFF"/>
+</svg>

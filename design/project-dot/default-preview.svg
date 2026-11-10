@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="980" viewBox="0 0 900 980" role="img" aria-labelledby="title desc">
+  <title id="title">Project Dot proposed default face in white casing</title>
+  <desc id="desc">Large preview of two small white oval eyes and an omega mouth on a circular black display.</desc>
+  <rect width="900" height="980" fill="#FFFFFF"/>
+  <text x="450" y="72" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="#000000">PROPOSED DEFAULT</text>
+  <circle cx="450" cy="500" r="390" fill="#FFFFFF" stroke="#000000" stroke-width="5"/>
+  <circle cx="450" cy="500" r="346" fill="#000000"/>
+  <g transform="translate(90 140) scale(1.5)">
+    <ellipse cx="150" cy="205" rx="25" ry="42" fill="#FFFFFF"/>
+    <ellipse cx="330" cy="205" rx="25" ry="42" fill="#FFFFFF"/>
+    <path d="M178 270 C192 300 224 300 240 274 C256 300 288 300 302 270" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="450" y="945" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#000000">IDLE / NEUTRAL</text>
+</svg>

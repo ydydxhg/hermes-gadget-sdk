@@ -18,6 +18,10 @@ namespace hg {
 
 enum class LogLevel : uint8_t { Debug, Info, Warn, Error };
 
+// A display can opt into a board-specific presentation without changing the
+// application model or the behaviour of other panels.
+enum class UiTheme : uint8_t { Standard, ProjectDot };
+
 struct DisplayInfo {
   uint16_t width = 0;
   uint16_t height = 0;
@@ -37,6 +41,7 @@ struct DisplayInfo {
   // An OLED/AMOLED panel: unlit pixels draw no power, so the background is
   // true black instead of the near-black used on backlit LCDs.
   bool emissive = false;
+  UiTheme theme = UiTheme::Standard;
 };
 
 // An RGB565 framebuffer owned by the port (PSRAM on hardware). On a board that

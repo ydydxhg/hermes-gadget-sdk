@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" role="img" aria-labelledby="title">
+  <title id="title">Project Dot error confused face</title>
+  <rect width="480" height="480" fill="#FFFFFF"/>
+  <circle cx="240" cy="240" r="232" fill="#000000"/>
+  <ellipse cx="150" cy="202" rx="25" ry="42" fill="#FFFFFF"/>
+  <path d="M295 212 L367 188" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"/>
+  <path d="M182 288 Q210 258 238 288 Q266 318 300 284" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

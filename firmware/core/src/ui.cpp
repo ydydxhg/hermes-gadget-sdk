@@ -1,5 +1,7 @@
 #include "hg/ui.hpp"
 
+#include "hg/project_dot.hpp"
+
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -304,6 +306,32 @@ uint16_t caption_color(Screen s) {
   }
 }
 
+bool project_dot_full(const DisplayInfo& info, const UiModel& m) {
+  if (info.theme != UiTheme::ProjectDot || !m.hero || m.link != Link::Online || m.timer_permille >= 0) return false;
+  return m.screen == Screen::Ready || m.screen == Screen::Listening || m.screen == Screen::Thinking ||
+         m.screen == Screen::Responding;
+}
+
+project_dot::Expression project_dot_expression(const UiModel& m) {
+  switch (m.screen) {
+    case Screen::Ready:
+      if (m.animate) {
+        switch (m.frame % 70) {
+          case 60:
+          case 62: return project_dot::Expression::IdleHalfBlink;
+          case 61: return project_dot::Expression::IdleBlink;
+          default: break;
+        }
+      }
+      return project_dot::Expression::Neutral;
+    case Screen::Listening: return project_dot::Expression::Listening;
+    case Screen::Thinking: return project_dot::Expression::Thinking;
+    case Screen::Responding: return m.speaking ? project_dot::Expression::Speaking : project_dot::Expression::Neutral;
+    case Screen::Error: return project_dot::Expression::Confused;
+    default: return project_dot::Expression::Neutral;
+  }
+}
+
 }  // namespace
 
 const char* screen_name(Screen s) {
@@ -564,6 +592,23 @@ void Ui::draw_frame(const UiModel& m) {
   }
   if (m.screen == Screen::LowBattery || m.screen == Screen::Charging || m.screen == Screen::Charged) {
     draw_battery_face(m);
+    return;
+  }
+  if (project_dot_full(panel_, m)) {
+    const project_dot::Expression expression = project_dot_expression(m);
+    const uint32_t key = Hash().val(expression).get();
+    if (valid_ && full_face_ == FullFace::ProjectDot && key == face_hash_) return;
+    full_face_ = FullFace::ProjectDot;
+    face_hash_ = key;
+    valid_ = true;
+    const int size = std::min<int>(panel_.width, panel_.height);
+    const int x = (panel_.width - size) / 2, y = (panel_.height - size) / 2;
+    each_window(0, panel_.height, [&](int a, int b) {
+      Canvas c = panel_canvas();
+      c.set_clip_rows(a, b);
+      c.fill_rect(0, 0, panel_.width, panel_.height, 0);
+      project_dot::draw(c, x, y, size, expression, rgb565(255, 255, 255));
+    });
     return;
   }
   if (full_face_ != FullFace::None) {  // a face painted the whole panel: everything comes back
@@ -1047,7 +1092,9 @@ int Ui::name_marker_x() const {
   return info_.width - 2 * s - 3 * s - Canvas::text_width("v", s);  // name_rect's right edge, less 3s
 }
 
-bool Ui::name_hit(const UiModel& m, int x, int y) const { return name_rect(m).has(x - ox_, y - oy_); }
+bool Ui::name_hit(const UiModel& m, int x, int y) const {
+  return !project_dot_full(panel_, m) && name_rect(m).has(x - ox_, y - oy_);
+}
 
 namespace {
 // An initial's colour, picked by the profile id so a profile keeps it on every board and page.
@@ -1593,8 +1640,12 @@ void Ui::draw_hero(Canvas& c, const UiModel& m) {
   const HeroGeom g = hero_geom(m);
   const int size = g.size, mx = g.x, my = g.y;
   const mascot::Anchors& a = mascot::anchors(m.face);
-  const mascot::Bitmap b = mascot::pick(size, mascot_frame(m), m.face);
-  draw_face(c, mx, my, b, m.face, kText);
+  if (panel_.theme == UiTheme::ProjectDot && m.screen == Screen::Error)
+    project_dot::draw(c, mx, my, size, project_dot::Expression::Confused, rgb565(255, 255, 255));
+  else {
+    const mascot::Bitmap b = mascot::pick(size, mascot_frame(m), m.face);
+    draw_face(c, mx, my, b, m.face, kText);
+  }
   const int stroke = std::max(2, size / 48);
   auto waves = [&](int cx, int cy, int dir, int lit, int phase, uint16_t on, uint16_t dim, int r0) {
     for (int i = 0; i < 3; ++i) {

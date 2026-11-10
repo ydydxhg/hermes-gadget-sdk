@@ -32,6 +32,24 @@ def test_open_device_reaches_ready_and_text_round_trips(devserver, make_sim):
     assert sim.wait_screen("ready", timeout=5)
 
 
+def test_amoled_216_simulator_uses_the_project_dot_face(devserver, make_sim):
+    _hub, _brain, url = devserver()
+    sim = make_sim(url, board="sim-480x480")
+    assert sim.wait_screen("ready", timeout=10)
+    assert sim.console("set animation off") == "@ok animation"
+    sim.run_for(0.2)
+    rgb = sim.rgb888()
+
+    def pixel(x, y):
+        start = (y * 480 + x) * 3
+        return rgb[start:start + 3]
+
+    assert pixel(150, 205) == b"\xff\xff\xff"
+    assert pixel(330, 205) == b"\xff\xff\xff"
+    assert pixel(0, 0) == b"\x00\x00\x00"
+    assert set(rgb) <= {0, 255}
+
+
 def test_welcome_names_the_language_and_an_auto_device_follows_it(devserver, make_sim):
     _hub, _brain, url = devserver(language="es")
     sim = make_sim(url)

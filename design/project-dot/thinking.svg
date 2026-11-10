@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" role="img" aria-labelledby="title">
+  <title id="title">Project Dot thinking face</title>
+  <rect width="480" height="480" fill="#FFFFFF"/>
+  <circle cx="240" cy="240" r="232" fill="#000000"/>
+  <ellipse cx="155" cy="195" rx="23" ry="40" transform="rotate(-18 155 195)" fill="#FFFFFF"/>
+  <ellipse cx="335" cy="174" rx="23" ry="40" transform="rotate(-18 335 174)" fill="#FFFFFF"/>
+  <path d="M205 286 Q235 265 265 286" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+</svg>
